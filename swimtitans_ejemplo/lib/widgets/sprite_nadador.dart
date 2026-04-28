@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import '../models/tipo_nado.dart';
 
 class SpriteNadador extends StatelessWidget {
-  const SpriteNadador({super.key, required this.tipoNado});
+  const SpriteNadador({
+    super.key,
+    required this.tipoNado,
+    this.vaHaciaLaDerecha = true,
+  });
 
   final TipoNado tipoNado;
+  final bool vaHaciaLaDerecha;
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +20,12 @@ class SpriteNadador extends StatelessWidget {
       child: Image.asset(
         tipoNado.rutaImagen,
         fit: BoxFit.contain,
+        frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+          return Transform.scale(
+            scaleX: vaHaciaLaDerecha ? 1 : -1,
+            child: child,
+          );
+        },
         errorBuilder: (context, error, stackTrace) {
           return _MarcadorNadador(tipoNado: tipoNado);
         },

@@ -25,6 +25,7 @@ class _PantallaJuegoState extends State<PantallaJuego> {
   bool ladoDerechoPresionado = false;
 
   double get progresoMeta => widget.distancia.progresoMeta;
+  int get totalLargos => widget.distancia.largos;
 
   void avanzar() {
     if (estaTerminado) {
@@ -95,6 +96,14 @@ class _PantallaJuegoState extends State<PantallaJuego> {
   @override
   Widget build(BuildContext context) {
     final porcentajeProgreso = progreso / progresoMeta;
+    final juegoCompleto = progreso >= progresoMeta;
+    final largoActual = juegoCompleto
+        ? totalLargos - 1
+        : (progreso ~/ 100).clamp(0, totalLargos - 1).toInt();
+    final progresoEnLargo = juegoCompleto ? 100.0 : progreso % 100;
+    final porcentajeLargo = progresoEnLargo / 100;
+    final vaHaciaLaDerecha = largoActual.isEven;
+    final largoMostrado = juegoCompleto ? totalLargos : largoActual + 1;
 
     return Scaffold(
       body: SafeArea(
@@ -105,39 +114,41 @@ class _PantallaJuegoState extends State<PantallaJuego> {
               _BarraSuperior(
                 tipoNado: widget.tipoNado,
                 distancia: widget.distancia,
+                alVolverInicio: volverAlInicio,
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 620),
+                    child: VistaPiscina(
+                      tipoNado: widget.tipoNado,
+                      porcentajeLargo: porcentajeLargo,
+                      vaHaciaLaDerecha: vaHaciaLaDerecha,
+                      largoActual: largoActual,
+                      totalLargos: totalLargos,
+                      alTocarLado: tocarLado,
+                      alDeslizarArriba: deslizarArriba,
+                      alCambiarLadoMariposa: presionarLadoMariposa,
+                      ladoIzquierdoPresionado: ladoIzquierdoPresionado,
+                      ladoDerechoPresionado: ladoDerechoPresionado,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              _PanelInferior(
+                tipoNado: widget.tipoNado,
                 progreso: progreso,
                 progresoMeta: progresoMeta,
+                porcentajeProgreso: porcentajeProgreso,
+                largoMostrado: largoMostrado,
+                totalLargos: totalLargos,
+                distancia: widget.distancia,
+                estaTerminado: estaTerminado,
+                alRepetir: repetirPractica,
+                alVolverInicio: volverAlInicio,
               ),
-              const SizedBox(height: 14),
-              Expanded(
-                child: VistaPiscina(
-                  tipoNado: widget.tipoNado,
-                  porcentajeProgreso: porcentajeProgreso,
-                  alTocarLado: tocarLado,
-                  alDeslizarArriba: deslizarArriba,
-                  alCambiarLadoMariposa: presionarLadoMariposa,
-                  ladoIzquierdoPresionado: ladoIzquierdoPresionado,
-                  ladoDerechoPresionado: ladoDerechoPresionado,
-                ),
-              ),
-              const SizedBox(height: 14),
-              LinearProgressIndicator(
-                value: porcentajeProgreso,
-                minHeight: 14,
-                borderRadius: BorderRadius.circular(20),
-                backgroundColor: Colors.white,
-              ),
-              const SizedBox(height: 14),
-              if (estaTerminado)
-                _PanelFinal(
-                  alRepetir: repetirPractica,
-                  alVolverInicio: volverAlInicio,
-                )
-              else
-                OutlinedButton(
-                  onPressed: volverAlInicio,
-                  child: const Text('Volver al inicio'),
-                ),
             ],
           ),
         ),
@@ -150,14 +161,12 @@ class _BarraSuperior extends StatelessWidget {
   const _BarraSuperior({
     required this.tipoNado,
     required this.distancia,
-    required this.progreso,
-    required this.progresoMeta,
+    required this.alVolverInicio,
   });
 
   final TipoNado tipoNado;
   final DistanciaNado distancia;
-  final double progreso;
-  final double progresoMeta;
+  final VoidCallback alVolverInicio;
 
   @override
   Widget build(BuildContext context) {
@@ -168,13 +177,23 @@ class _BarraSuperior extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _TextoInfo(etiqueta: 'Nado', valor: tipoNado.etiqueta),
-          _TextoInfo(etiqueta: 'Distancia', valor: distancia.etiqueta),
-          _TextoInfo(
-            etiqueta: 'Progreso',
-            valor: '${progreso.toInt()} / ${progresoMeta.toInt()}',
+          IconButton(
+            onPressed: alVolverInicio,
+            icon: const Icon(Icons.arrow_back),
+            tooltip: 'Volver',
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Wrap(
+              alignment: WrapAlignment.end,
+              spacing: 18,
+              runSpacing: 8,
+              children: [
+                _TextoInfo(etiqueta: 'Nado', valor: tipoNado.etiqueta),
+                _TextoInfo(etiqueta: 'Distancia', valor: distancia.etiqueta),
+              ],
+            ),
           ),
         ],
       ),
@@ -210,6 +229,126 @@ class _TextoInfo extends StatelessWidget {
   }
 }
 
+class _PanelInferior extends StatelessWidget {
+  const _PanelInferior({
+    required this.tipoNado,
+    required this.progreso,
+    required this.progresoMeta,
+    required this.porcentajeProgreso,
+    required this.largoMostrado,
+    required this.totalLargos,
+    required this.distancia,
+    required this.estaTerminado,
+    required this.alRepetir,
+    required this.alVolverInicio,
+  });
+
+  final TipoNado tipoNado;
+  final double progreso;
+  final double progresoMeta;
+  final double porcentajeProgreso;
+  final int largoMostrado;
+  final int totalLargos;
+  final DistanciaNado distancia;
+  final bool estaTerminado;
+  final VoidCallback alRepetir;
+  final VoidCallback alVolverInicio;
+
+  String get textoAyuda {
+    switch (tipoNado) {
+      case TipoNado.libre:
+      case TipoNado.dorso:
+        return 'Toca izquierda o derecha';
+      case TipoNado.mariposa:
+        return 'Presiona ambos lados';
+      case TipoNado.pecho:
+        return 'Desliza hacia arriba';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Progreso',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF0F172A),
+                ),
+              ),
+              Text(
+                '${progreso.toInt()} / ${progresoMeta.toInt()}',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF075985),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            spacing: 16,
+            runSpacing: 6,
+            children: [
+              Text(
+                'Largo $largoMostrado / $totalLargos',
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF0F172A),
+                ),
+              ),
+              Text(
+                'Distancia total: ${distancia.etiqueta}',
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF0F172A),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          LinearProgressIndicator(
+            value: porcentajeProgreso,
+            minHeight: 14,
+            borderRadius: BorderRadius.circular(20),
+            backgroundColor: const Color(0xFFE0F2FE),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            textoAyuda,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF0F172A),
+            ),
+          ),
+          if (estaTerminado) ...[
+            const SizedBox(height: 14),
+            _PanelFinal(alRepetir: alRepetir, alVolverInicio: alVolverInicio),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
 class _PanelFinal extends StatelessWidget {
   const _PanelFinal({required this.alRepetir, required this.alVolverInicio});
 
@@ -220,10 +359,10 @@ class _PanelFinal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
+        color: const Color(0xFFE0F2FE),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         children: [

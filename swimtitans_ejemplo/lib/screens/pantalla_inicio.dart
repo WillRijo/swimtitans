@@ -33,120 +33,182 @@ class _PantallaInicioState extends State<PantallaInicio> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 560),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Text(
-                    'Swim Titans',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 42,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF075985),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const SizedBox(height: 28),
+                        const _EncabezadoInicio(),
+                        Expanded(
+                          child: Center(
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 560),
+                              child: _TarjetaSelectores(
+                                tipoNadoSeleccionado: tipoNadoSeleccionado,
+                                distanciaSeleccionada: distanciaSeleccionada,
+                                alCambiarTipoNado: (tipoNado) {
+                                  setState(() {
+                                    tipoNadoSeleccionado = tipoNado;
+                                  });
+                                },
+                                alCambiarDistancia: (distancia) {
+                                  setState(() {
+                                    distanciaSeleccionada = distancia;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 28, 8, 30),
+                          child: FilledButton(
+                            onPressed: iniciarPractica,
+                            style: FilledButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              textStyle: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            child: const Text('Iniciar practica'),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  _TarjetaBlanca(title: 'Modo', child: const SelectorModo()),
-                  const SizedBox(height: 16),
-                  _TarjetaBlanca(
-                    title: 'Tipo de nado',
-                    child: Wrap(
-                      spacing: 10,
-                      runSpacing: 10,
-                      children: TipoNado.values.map((tipoNado) {
-                        return BotonTipoNado(
-                          tipoNado: tipoNado,
-                          estaSeleccionado: tipoNadoSeleccionado == tipoNado,
-                          onPressed: () {
-                            setState(() {
-                              tipoNadoSeleccionado = tipoNado;
-                            });
-                          },
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  _TarjetaBlanca(
-                    title: 'Distancia',
-                    child: Wrap(
-                      spacing: 10,
-                      runSpacing: 10,
-                      children: DistanciaNado.values.map((distancia) {
-                        return BotonDistancia(
-                          distancia: distancia,
-                          estaSeleccionada: distanciaSeleccionada == distancia,
-                          onPressed: () {
-                            setState(() {
-                              distanciaSeleccionada = distancia;
-                            });
-                          },
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  FilledButton(
-                    onPressed: iniciarPractica,
-                    style: FilledButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 18),
-                      textStyle: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    child: const Text('Iniciar practica'),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );
   }
 }
 
-class _TarjetaBlanca extends StatelessWidget {
-  const _TarjetaBlanca({required this.title, required this.child});
+class _EncabezadoInicio extends StatelessWidget {
+  const _EncabezadoInicio();
 
-  final String title;
-  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        Text(
+          'Swim Titans',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 42,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF075985),
+          ),
+        ),
+        SizedBox(height: 8),
+        Text(
+          'Elige tu practica',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF0F172A),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _TarjetaSelectores extends StatelessWidget {
+  const _TarjetaSelectores({
+    required this.tipoNadoSeleccionado,
+    required this.distanciaSeleccionada,
+    required this.alCambiarTipoNado,
+    required this.alCambiarDistancia,
+  });
+
+  final TipoNado tipoNadoSeleccionado;
+  final DistanciaNado distanciaSeleccionada;
+  final ValueChanged<TipoNado> alCambiarTipoNado;
+  final ValueChanged<DistanciaNado> alCambiarDistancia;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(vertical: 28),
+      padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(22),
         boxShadow: [
           BoxShadow(
             color: Colors.blue.withValues(alpha: 0.12),
-            blurRadius: 12,
-            offset: const Offset(0, 6),
+            blurRadius: 16,
+            offset: const Offset(0, 8),
           ),
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF0F172A),
-            ),
-          ),
+          const _TituloSeccion('Modo'),
           const SizedBox(height: 12),
-          child,
+          const SelectorModo(),
+          const SizedBox(height: 24),
+          const _TituloSeccion('Tipo de nado'),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: TipoNado.values.map((tipoNado) {
+              return BotonTipoNado(
+                tipoNado: tipoNado,
+                estaSeleccionado: tipoNadoSeleccionado == tipoNado,
+                onPressed: () => alCambiarTipoNado(tipoNado),
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 24),
+          const _TituloSeccion('Distancia'),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: DistanciaNado.values.map((distancia) {
+              return BotonDistancia(
+                distancia: distancia,
+                estaSeleccionada: distanciaSeleccionada == distancia,
+                onPressed: () => alCambiarDistancia(distancia),
+              );
+            }).toList(),
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class _TituloSeccion extends StatelessWidget {
+  const _TituloSeccion(this.texto);
+
+  final String texto;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      texto,
+      style: const TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Color(0xFF0F172A),
       ),
     );
   }

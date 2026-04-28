@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'app.dart';
+import 'aplicacion.dart';
 
 void main() {
-  runApp(const SwimTitansApp());
+  runApp(const AplicacionSwimTitans());
 }

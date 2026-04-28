@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'screens/home_screen.dart';
+import 'screens/pantalla_inicio.dart';
 
-class SwimTitansApp extends StatelessWidget {
-  const SwimTitansApp({super.key});
+class AplicacionSwimTitans extends StatelessWidget {
+  const AplicacionSwimTitans({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class SwimTitansApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFE6F7FF),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const PantallaInicio(),
     );
   }
 }

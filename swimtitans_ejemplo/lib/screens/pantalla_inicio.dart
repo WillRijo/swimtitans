@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 
-import '../models/swim_distance.dart';
-import '../models/swim_stroke.dart';
-import '../widgets/distance_button.dart';
-import '../widgets/mode_selector.dart';
-import '../widgets/stroke_button.dart';
-import 'game_screen.dart';
+import '../models/distancia_nado.dart';
+import '../models/tipo_nado.dart';
+import '../widgets/boton_distancia.dart';
+import '../widgets/boton_tipo_nado.dart';
+import '../widgets/selector_modo.dart';
+import 'pantalla_juego.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class PantallaInicio extends StatefulWidget {
+  const PantallaInicio({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<PantallaInicio> createState() => _PantallaInicioState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  SwimStroke selectedStroke = SwimStroke.freestyle;
-  SwimDistance selectedDistance = SwimDistance.fifty;
+class _PantallaInicioState extends State<PantallaInicio> {
+  TipoNado tipoNadoSeleccionado = TipoNado.libre;
+  DistanciaNado distanciaSeleccionada = DistanciaNado.metros50;
 
-  void startPractice() {
+  void iniciarPractica() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) =>
-            GameScreen(stroke: selectedStroke, distance: selectedDistance),
+        builder: (context) => PantallaJuego(
+          tipoNado: tipoNadoSeleccionado,
+          distancia: distanciaSeleccionada,
+        ),
       ),
     );
   }
@@ -49,20 +51,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  _WhiteCard(title: 'Modo', child: const ModeSelector()),
+                  _TarjetaBlanca(title: 'Modo', child: const SelectorModo()),
                   const SizedBox(height: 16),
-                  _WhiteCard(
+                  _TarjetaBlanca(
                     title: 'Tipo de nado',
                     child: Wrap(
                       spacing: 10,
                       runSpacing: 10,
-                      children: SwimStroke.values.map((stroke) {
-                        return StrokeButton(
-                          stroke: stroke,
-                          isSelected: selectedStroke == stroke,
+                      children: TipoNado.values.map((tipoNado) {
+                        return BotonTipoNado(
+                          tipoNado: tipoNado,
+                          estaSeleccionado: tipoNadoSeleccionado == tipoNado,
                           onPressed: () {
                             setState(() {
-                              selectedStroke = stroke;
+                              tipoNadoSeleccionado = tipoNado;
                             });
                           },
                         );
@@ -70,18 +72,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  _WhiteCard(
+                  _TarjetaBlanca(
                     title: 'Distancia',
                     child: Wrap(
                       spacing: 10,
                       runSpacing: 10,
-                      children: SwimDistance.values.map((distance) {
-                        return DistanceButton(
-                          distance: distance,
-                          isSelected: selectedDistance == distance,
+                      children: DistanciaNado.values.map((distancia) {
+                        return BotonDistancia(
+                          distancia: distancia,
+                          estaSeleccionada: distanciaSeleccionada == distancia,
                           onPressed: () {
                             setState(() {
-                              selectedDistance = distance;
+                              distanciaSeleccionada = distancia;
                             });
                           },
                         );
@@ -90,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 24),
                   FilledButton(
-                    onPressed: startPractice,
+                    onPressed: iniciarPractica,
                     style: FilledButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 18),
                       textStyle: const TextStyle(
@@ -98,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    child: const Text('Iniciar práctica'),
+                    child: const Text('Iniciar practica'),
                   ),
                 ],
               ),
@@ -110,8 +112,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class _WhiteCard extends StatelessWidget {
-  const _WhiteCard({required this.title, required this.child});
+class _TarjetaBlanca extends StatelessWidget {
+  const _TarjetaBlanca({required this.title, required this.child});
 
   final String title;
   final Widget child;

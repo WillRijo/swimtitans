@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../models/swim_stroke.dart';
+import '../models/tipo_nado.dart';
 
-class SwimmerSprite extends StatelessWidget {
-  const SwimmerSprite({super.key, required this.stroke});
+class SpriteNadador extends StatelessWidget {
+  const SpriteNadador({super.key, required this.tipoNado});
 
-  final SwimStroke stroke;
+  final TipoNado tipoNado;
 
   @override
   Widget build(BuildContext context) {
@@ -13,20 +13,20 @@ class SwimmerSprite extends StatelessWidget {
       width: 76,
       height: 76,
       child: Image.asset(
-        stroke.assetPath,
+        tipoNado.rutaImagen,
         fit: BoxFit.contain,
         errorBuilder: (context, error, stackTrace) {
-          return _SwimmerPlaceholder(stroke: stroke);
+          return _MarcadorNadador(tipoNado: tipoNado);
         },
       ),
     );
   }
 }
 
-class _SwimmerPlaceholder extends StatelessWidget {
-  const _SwimmerPlaceholder({required this.stroke});
+class _MarcadorNadador extends StatelessWidget {
+  const _MarcadorNadador({required this.tipoNado});
 
-  final SwimStroke stroke;
+  final TipoNado tipoNado;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class _SwimmerPlaceholder extends StatelessWidget {
         children: [
           const Icon(Icons.pool, color: Color(0xFF0284C7), size: 28),
           Text(
-            stroke.label,
+            tipoNado.etiqueta,
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Color(0xFF075985),

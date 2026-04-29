@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'screens/pantalla_inicio.dart';
+import 'pantallas/pantalla_inicio.dart';
 
 const Color colorPrincipal = Colors.blue;
 const Color colorFondoAplicacion = Color(0xFFE6F7FF);

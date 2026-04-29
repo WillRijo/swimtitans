@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/modo_juego.dart';
+import '../modelos/modo_juego.dart';
 
 class SelectorModo extends StatelessWidget {
   const SelectorModo({super.key});

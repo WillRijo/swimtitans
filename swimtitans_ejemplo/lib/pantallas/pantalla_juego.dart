@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../models/distancia_nado.dart';
-import '../models/tipo_nado.dart';
+import '../modelos/distancia_nado.dart';
+import '../modelos/tipo_nado.dart';
 import '../widgets/sprite_nadador.dart';
 import '../widgets/vista_piscina.dart';
 

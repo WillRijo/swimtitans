@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/tipo_nado.dart';
+import '../modelos/tipo_nado.dart';
 import 'sprite_sheet_nadador.dart';
 
 class ConfiguracionSpriteNadador {

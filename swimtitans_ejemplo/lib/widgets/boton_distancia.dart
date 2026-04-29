@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/distancia_nado.dart';
+import '../modelos/distancia_nado.dart';
 
 class BotonDistancia extends StatelessWidget {
   const BotonDistancia({

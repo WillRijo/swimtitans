@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/distancia_nado.dart';
-import '../models/tipo_nado.dart';
+import '../modelos/distancia_nado.dart';
+import '../modelos/tipo_nado.dart';
 import '../widgets/boton_distancia.dart';
 import '../widgets/boton_tipo_nado.dart';
 import '../widgets/selector_modo.dart';

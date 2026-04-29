@@ -1,6 +1,6 @@
 enum DistanciaNado { metros50, metros100, metros200, metros400 }
 
-extension InfoDistanciaNado on DistanciaNado {
+extension DatosDistanciaNado on DistanciaNado {
   String get etiqueta {
     switch (this) {
       case DistanciaNado.metros50:
@@ -27,7 +27,7 @@ extension InfoDistanciaNado on DistanciaNado {
     }
   }
 
-  int get largos {
+  int get vueltas {
     switch (this) {
       case DistanciaNado.metros50:
         return 1;
@@ -40,7 +40,7 @@ extension InfoDistanciaNado on DistanciaNado {
     }
   }
 
-  double get progresoMeta {
-    return largos * 100;
+  double get progresoNecesarioParaGanar {
+    return vueltas * 100;
   }
 }

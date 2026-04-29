@@ -33,61 +33,54 @@ class _PantallaInicioState extends State<PantallaInicio> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: IntrinsicHeight(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(height: 28),
-                        const _EncabezadoInicio(),
-                        Expanded(
-                          child: Center(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(maxWidth: 560),
-                              child: _TarjetaSelectores(
-                                tipoNadoSeleccionado: tipoNadoSeleccionado,
-                                distanciaSeleccionada: distanciaSeleccionada,
-                                alCambiarTipoNado: (tipoNado) {
-                                  setState(() {
-                                    tipoNadoSeleccionado = tipoNado;
-                                  });
-                                },
-                                alCambiarDistancia: (distancia) {
-                                  setState(() {
-                                    distanciaSeleccionada = distancia;
-                                  });
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 28, 8, 30),
-                          child: FilledButton(
-                            onPressed: iniciarPractica,
-                            style: FilledButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 20),
-                              textStyle: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            child: const Text('Iniciar practica'),
-                          ),
-                        ),
-                      ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 28),
+              const _EncabezadoInicio(),
+              const SizedBox(height: 16),
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 560),
+                      child: _TarjetaSelectores(
+                        tipoNadoSeleccionado: tipoNadoSeleccionado,
+                        distanciaSeleccionada: distanciaSeleccionada,
+                        alCambiarTipoNado: (tipoNado) {
+                          setState(() {
+                            tipoNadoSeleccionado = tipoNado;
+                          });
+                        },
+                        alCambiarDistancia: (distancia) {
+                          setState(() {
+                            distanciaSeleccionada = distancia;
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ),
               ),
-            );
-          },
+
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 28, 8, 30),
+                child: FilledButton(
+                  onPressed: iniciarPractica,
+                  style: FilledButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  child: const Text('Iniciar practica'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -121,7 +114,7 @@ class _EncabezadoInicio extends StatelessWidget {
             borderRadius: BorderRadius.circular(28),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withAlpha(200),
+                color: Colors.black.withAlpha(36),
                 blurRadius: 18,
                 offset: const Offset(0, 8),
               ),
@@ -187,7 +180,7 @@ class _TarjetaSelectores extends StatelessWidget {
               return BotonTipoNado(
                 tipoNado: tipoNado,
                 estaSeleccionado: tipoNadoSeleccionado == tipoNado,
-                onPressed: () => alCambiarTipoNado(tipoNado),
+                alPresionar: () => alCambiarTipoNado(tipoNado),
               );
             }).toList(),
           ),
@@ -201,7 +194,7 @@ class _TarjetaSelectores extends StatelessWidget {
               return BotonDistancia(
                 distancia: distancia,
                 estaSeleccionada: distanciaSeleccionada == distancia,
-                onPressed: () => alCambiarDistancia(distancia),
+                alPresionar: () => alCambiarDistancia(distancia),
               );
             }).toList(),
           ),

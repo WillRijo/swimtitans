@@ -5,22 +5,22 @@ import 'sprite_sheet_nadador.dart';
 
 class ConfiguracionSpriteNadador {
   const ConfiguracionSpriteNadador({
-    required this.ruta,
-    required this.cantidadFrames,
-    required this.ancho,
-    required this.alto,
-    required this.duracionFrame,
+    required this.rutaImagen,
+    required this.cantidadDeFrames,
+    required this.anchoDelSprite,
+    required this.altoDelSprite,
+    required this.duracionDeCadaFrame,
   });
 
-  final String ruta;
-  final int cantidadFrames;
-  final double ancho;
-  final double alto;
-  final Duration duracionFrame;
+  final String rutaImagen;
+  final int cantidadDeFrames;
+  final double anchoDelSprite;
+  final double altoDelSprite;
+  final Duration duracionDeCadaFrame;
 
-  Duration get duracionCiclo {
+  Duration get duracionDelCiclo {
     return Duration(
-      milliseconds: duracionFrame.inMilliseconds * cantidadFrames,
+      milliseconds: duracionDeCadaFrame.inMilliseconds * cantidadDeFrames,
     );
   }
 }
@@ -38,46 +38,46 @@ class SpriteNadador extends StatelessWidget {
   final bool enEspera;
 
   static const configuracionEspera = ConfiguracionSpriteNadador(
-    ruta: 'assets/images/swimmers/espera.png',
-    cantidadFrames: 4,
-    ancho: 64,
-    alto: 50,
-    duracionFrame: Duration(milliseconds: 180),
+    rutaImagen: 'assets/images/swimmers/espera.png',
+    cantidadDeFrames: 4,
+    anchoDelSprite: 64,
+    altoDelSprite: 50,
+    duracionDeCadaFrame: Duration(milliseconds: 180),
   );
 
   static const configuracionLibre = ConfiguracionSpriteNadador(
-    ruta: 'assets/images/swimmers/libre.png',
-    cantidadFrames: 8,
-    ancho: 100,
-    alto: 100,
-    duracionFrame: Duration(milliseconds: 100),
+    rutaImagen: 'assets/images/swimmers/libre.png',
+    cantidadDeFrames: 8,
+    anchoDelSprite: 100,
+    altoDelSprite: 100,
+    duracionDeCadaFrame: Duration(milliseconds: 100),
   );
 
   static const configuracionDorso = ConfiguracionSpriteNadador(
-    ruta: 'assets/images/swimmers/dorso.png',
-    cantidadFrames: 8,
-    ancho: 100,
-    alto: 100,
-    duracionFrame: Duration(milliseconds: 100),
+    rutaImagen: 'assets/images/swimmers/dorso.png',
+    cantidadDeFrames: 8,
+    anchoDelSprite: 100,
+    altoDelSprite: 100,
+    duracionDeCadaFrame: Duration(milliseconds: 100),
   );
 
   static const configuracionPecho = ConfiguracionSpriteNadador(
-    ruta: 'assets/images/swimmers/pecho.png',
-    cantidadFrames: 8,
-    ancho: 100,
-    alto: 100,
-    duracionFrame: Duration(milliseconds: 100),
+    rutaImagen: 'assets/images/swimmers/pecho.png',
+    cantidadDeFrames: 8,
+    anchoDelSprite: 100,
+    altoDelSprite: 100,
+    duracionDeCadaFrame: Duration(milliseconds: 100),
   );
 
   static const configuracionMariposa = ConfiguracionSpriteNadador(
-    ruta: 'assets/images/swimmers/mariposa.png',
-    cantidadFrames: 8,
-    ancho: 100,
-    alto: 100,
-    duracionFrame: Duration(milliseconds: 100),
+    rutaImagen: 'assets/images/swimmers/mariposa.png',
+    cantidadDeFrames: 8,
+    anchoDelSprite: 100,
+    altoDelSprite: 100,
+    duracionDeCadaFrame: Duration(milliseconds: 100),
   );
 
-  static ConfiguracionSpriteNadador? configuracionPara({
+  static ConfiguracionSpriteNadador configuracionPara({
     required TipoNado tipoNado,
     required bool enEspera,
   }) {
@@ -85,39 +85,36 @@ class SpriteNadador extends StatelessWidget {
       return configuracionEspera;
     }
 
-    if (tipoNado == TipoNado.libre) {
-      return configuracionLibre;
+    switch (tipoNado) {
+      case TipoNado.libre:
+        return configuracionLibre;
+      case TipoNado.dorso:
+        return configuracionDorso;
+      case TipoNado.pecho:
+        return configuracionPecho;
+      case TipoNado.mariposa:
+        return configuracionMariposa;
     }
-
-    if (tipoNado == TipoNado.dorso) {
-      return configuracionDorso;
-    }
-
-    if (tipoNado == TipoNado.pecho) {
-      return configuracionPecho;
-    }
-
-    if (tipoNado == TipoNado.mariposa) {
-      return configuracionMariposa;
-    }
-
-    return null;
   }
 
   static double anchoVisual({
     required TipoNado tipoNado,
     required bool enEspera,
   }) {
-    return configuracionPara(tipoNado: tipoNado, enEspera: enEspera)?.ancho ??
-        76;
+    return configuracionPara(
+      tipoNado: tipoNado,
+      enEspera: enEspera,
+    ).anchoDelSprite;
   }
 
   static double altoVisual({
     required TipoNado tipoNado,
     required bool enEspera,
   }) {
-    return configuracionPara(tipoNado: tipoNado, enEspera: enEspera)?.alto ??
-        76;
+    return configuracionPara(
+      tipoNado: tipoNado,
+      enEspera: enEspera,
+    ).altoDelSprite;
   }
 
   @override
@@ -127,66 +124,14 @@ class SpriteNadador extends StatelessWidget {
       enEspera: enEspera,
     );
 
-    if (configuracion != null) {
-      return SpriteSheetNadador(
-        key: ValueKey('${configuracion.ruta}-$enEspera'),
-        ruta: configuracion.ruta,
-        cantidadFrames: configuracion.cantidadFrames,
-        ancho: configuracion.ancho,
-        alto: configuracion.alto,
-        duracionFrame: configuracion.duracionFrame,
-        invertirHorizontal: !vaHaciaLaDerecha,
-      );
-    }
-
-    return SizedBox(
-      width: 76,
-      height: 76,
-      child: Image.asset(
-        tipoNado.rutaImagen,
-        fit: BoxFit.contain,
-        frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-          return Transform.scale(
-            scaleX: vaHaciaLaDerecha ? 1 : -1,
-            child: child,
-          );
-        },
-        errorBuilder: (context, error, stackTrace) {
-          return _MarcadorNadador(tipoNado: tipoNado);
-        },
-      ),
-    );
-  }
-}
-
-class _MarcadorNadador extends StatelessWidget {
-  const _MarcadorNadador({required this.tipoNado});
-
-  final TipoNado tipoNado;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-        border: Border.all(color: const Color(0xFF0284C7), width: 3),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.pool, color: Color(0xFF0284C7), size: 28),
-          Text(
-            tipoNado.etiqueta,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Color(0xFF075985),
-              fontSize: 11,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
+    return SpriteSheetNadador(
+      key: ValueKey('${configuracion.rutaImagen}-$enEspera'),
+      rutaImagen: configuracion.rutaImagen,
+      cantidadDeFrames: configuracion.cantidadDeFrames,
+      anchoDelFrame: configuracion.anchoDelSprite,
+      altoDelFrame: configuracion.altoDelSprite,
+      duracionDeCadaFrame: configuracion.duracionDeCadaFrame,
+      invertirHorizontal: !vaHaciaLaDerecha,
     );
   }
 }

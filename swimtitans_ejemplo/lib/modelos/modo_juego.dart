@@ -1,6 +1,6 @@
 enum ModoJuego { practica, competencia }
 
-extension InfoModoJuego on ModoJuego {
+extension TextoModoJuego on ModoJuego {
   String get etiqueta {
     switch (this) {
       case ModoJuego.practica:

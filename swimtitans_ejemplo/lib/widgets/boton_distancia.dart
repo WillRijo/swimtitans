@@ -7,19 +7,19 @@ class BotonDistancia extends StatelessWidget {
     super.key,
     required this.distancia,
     required this.estaSeleccionada,
-    required this.onPressed,
+    required this.alPresionar,
   });
 
   final DistanciaNado distancia;
   final bool estaSeleccionada;
-  final VoidCallback onPressed;
+  final VoidCallback alPresionar;
 
   @override
   Widget build(BuildContext context) {
     return ChoiceChip(
       label: Text(distancia.etiqueta),
       selected: estaSeleccionada,
-      onSelected: (_) => onPressed(),
+      onSelected: (_) => alPresionar(),
       labelStyle: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.bold,

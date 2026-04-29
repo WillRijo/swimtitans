@@ -7,19 +7,19 @@ class BotonTipoNado extends StatelessWidget {
     super.key,
     required this.tipoNado,
     required this.estaSeleccionado,
-    required this.onPressed,
+    required this.alPresionar,
   });
 
   final TipoNado tipoNado;
   final bool estaSeleccionado;
-  final VoidCallback onPressed;
+  final VoidCallback alPresionar;
 
   @override
   Widget build(BuildContext context) {
     return ChoiceChip(
       label: Text(tipoNado.etiqueta),
       selected: estaSeleccionado,
-      onSelected: (_) => onPressed(),
+      onSelected: (_) => alPresionar(),
       labelStyle: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.bold,

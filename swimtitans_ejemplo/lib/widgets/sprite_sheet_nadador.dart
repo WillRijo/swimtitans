@@ -5,19 +5,19 @@ import 'package:flutter/material.dart';
 class SpriteSheetNadador extends StatefulWidget {
   const SpriteSheetNadador({
     super.key,
-    required this.ruta,
-    required this.cantidadFrames,
-    required this.ancho,
-    required this.alto,
-    this.duracionFrame = const Duration(milliseconds: 120),
+    required this.rutaImagen,
+    required this.cantidadDeFrames,
+    required this.anchoDelFrame,
+    required this.altoDelFrame,
+    this.duracionDeCadaFrame = const Duration(milliseconds: 120),
     this.invertirHorizontal = false,
   });
 
-  final String ruta;
-  final int cantidadFrames;
-  final double ancho;
-  final double alto;
-  final Duration duracionFrame;
+  final String rutaImagen;
+  final int cantidadDeFrames;
+  final double anchoDelFrame;
+  final double altoDelFrame;
+  final Duration duracionDeCadaFrame;
   final bool invertirHorizontal;
 
   @override
@@ -25,8 +25,8 @@ class SpriteSheetNadador extends StatefulWidget {
 }
 
 class _SpriteSheetNadadorState extends State<SpriteSheetNadador> {
-  Timer? temporizador;
-  int frameActual = 0;
+  Timer? temporizadorAnimacion;
+  int numeroDelFrameActual = 0;
 
   @override
   void initState() {
@@ -37,66 +37,75 @@ class _SpriteSheetNadadorState extends State<SpriteSheetNadador> {
   @override
   void didUpdateWidget(covariant SpriteSheetNadador oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.ruta != widget.ruta ||
-        oldWidget.cantidadFrames != widget.cantidadFrames ||
-        oldWidget.duracionFrame != widget.duracionFrame) {
-      frameActual = 0;
+
+    final cambioLaImagen = oldWidget.rutaImagen != widget.rutaImagen;
+    final cambioLaCantidadDeFrames =
+        oldWidget.cantidadDeFrames != widget.cantidadDeFrames;
+    final cambioLaDuracion =
+        oldWidget.duracionDeCadaFrame != widget.duracionDeCadaFrame;
+
+    if (cambioLaImagen || cambioLaCantidadDeFrames || cambioLaDuracion) {
+      setState(() {
+        numeroDelFrameActual = 0;
+      });
       iniciarAnimacion();
     }
   }
 
   @override
   void dispose() {
-    temporizador?.cancel();
+    temporizadorAnimacion?.cancel();
     super.dispose();
   }
 
   void iniciarAnimacion() {
-    temporizador?.cancel();
+    temporizadorAnimacion?.cancel();
 
-    if (widget.cantidadFrames <= 1) {
+    if (widget.cantidadDeFrames <= 1) {
       return;
     }
 
-    temporizador = Timer.periodic(widget.duracionFrame, (_) {
+    temporizadorAnimacion = Timer.periodic(widget.duracionDeCadaFrame, (_) {
       if (!mounted) {
         return;
       }
 
       setState(() {
-        frameActual = (frameActual + 1) % widget.cantidadFrames;
+        numeroDelFrameActual =
+            (numeroDelFrameActual + 1) % widget.cantidadDeFrames;
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final anchoTotal = widget.ancho * widget.cantidadFrames;
+    final anchoTotalDelSpriteSheet =
+        widget.anchoDelFrame * widget.cantidadDeFrames;
 
     return Transform.scale(
       scaleX: widget.invertirHorizontal ? -1 : 1,
       child: SizedBox(
-        width: widget.ancho,
-        height: widget.alto,
+        width: widget.anchoDelFrame,
+        height: widget.altoDelFrame,
         child: ClipRect(
           child: OverflowBox(
             alignment: Alignment.centerLeft,
-            minWidth: anchoTotal,
-            maxWidth: anchoTotal,
-            minHeight: widget.alto,
-            maxHeight: widget.alto,
+            minWidth: anchoTotalDelSpriteSheet,
+            maxWidth: anchoTotalDelSpriteSheet,
+            minHeight: widget.altoDelFrame,
+            maxHeight: widget.altoDelFrame,
             child: Transform.translate(
-              offset: Offset(-widget.ancho * frameActual, 0),
+              offset: Offset(-widget.anchoDelFrame * numeroDelFrameActual, 0),
               child: Image.asset(
-                widget.ruta,
-                width: anchoTotal,
-                height: widget.alto,
+                widget.rutaImagen,
+                width: anchoTotalDelSpriteSheet,
+                height: widget.altoDelFrame,
                 fit: BoxFit.fill,
                 errorBuilder: (context, error, stackTrace) {
                   return _SpriteSheetPlaceholder(
-                    anchoFrame: widget.ancho,
-                    alto: widget.alto,
-                    cantidadFrames: widget.cantidadFrames,
+                    anchoDelFrame: widget.anchoDelFrame,
+                    altoDelFrame: widget.altoDelFrame,
+                    cantidadDeFrames: widget.cantidadDeFrames,
                   );
                 },
               ),
@@ -110,22 +119,22 @@ class _SpriteSheetNadadorState extends State<SpriteSheetNadador> {
 
 class _SpriteSheetPlaceholder extends StatelessWidget {
   const _SpriteSheetPlaceholder({
-    required this.anchoFrame,
-    required this.alto,
-    required this.cantidadFrames,
+    required this.anchoDelFrame,
+    required this.altoDelFrame,
+    required this.cantidadDeFrames,
   });
 
-  final double anchoFrame;
-  final double alto;
-  final int cantidadFrames;
+  final double anchoDelFrame;
+  final double altoDelFrame;
+  final int cantidadDeFrames;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List.generate(cantidadFrames, (index) {
+      children: List.generate(cantidadDeFrames, (index) {
         return SizedBox(
-          width: anchoFrame,
-          height: alto,
+          width: anchoDelFrame,
+          height: altoDelFrame,
           child: const DecoratedBox(
             decoration: BoxDecoration(color: Colors.white),
             child: Icon(Icons.pool, color: Color(0xFF0284C7)),

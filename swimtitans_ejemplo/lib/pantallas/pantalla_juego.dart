@@ -7,7 +7,7 @@ import '../modelos/tipo_nado.dart';
 import '../widgets/sprite_nadador.dart';
 import '../widgets/vista_piscina.dart';
 
-enum LadoToque { izquierdo, derecho }
+enum LadoPantalla { izquierdo, derecho }
 
 class PantallaJuego extends StatefulWidget {
   const PantallaJuego({
@@ -24,86 +24,88 @@ class PantallaJuego extends StatefulWidget {
 }
 
 class _PantallaJuegoState extends State<PantallaJuego> {
-  double progreso = 0;
-  bool estaTerminado = false;
+  static const double progresoPorVuelta = 100;
+  double progresoActual = 0;
+  bool practicaTerminada = false;
   bool ladoIzquierdoPresionado = false;
   bool ladoDerechoPresionado = false;
-  bool hayAccionReciente = false;
-  Timer? temporizadorEspera;
-  LadoToque? ultimoLadoToque;
+  bool elJugadorEstaNadando = false;
+  Timer? temporizadorParaVolverAEspera;
+  LadoPantalla? ultimoLadoTocado;
 
-  double get progresoMeta => widget.distancia.progresoMeta;
-  int get totalLargos => widget.distancia.largos;
+  double get progresoNecesarioParaGanar =>
+      widget.distancia.progresoNecesarioParaGanar;
+  int get totalVueltas => widget.distancia.vueltas;
 
   Duration get duracionAccionSprite {
     switch (widget.tipoNado) {
       case TipoNado.libre:
-        return SpriteNadador.configuracionLibre.duracionCiclo +
+        return SpriteNadador.configuracionLibre.duracionDelCiclo +
             const Duration(milliseconds: 100);
       case TipoNado.dorso:
-        return SpriteNadador.configuracionDorso.duracionCiclo +
+        return SpriteNadador.configuracionDorso.duracionDelCiclo +
             const Duration(milliseconds: 100);
       case TipoNado.pecho:
-        return SpriteNadador.configuracionPecho.duracionCiclo +
+        return SpriteNadador.configuracionPecho.duracionDelCiclo +
             const Duration(milliseconds: 100);
       case TipoNado.mariposa:
-        return SpriteNadador.configuracionMariposa.duracionCiclo +
+        return SpriteNadador.configuracionMariposa.duracionDelCiclo +
             const Duration(milliseconds: 100);
     }
   }
 
   @override
   void dispose() {
-    temporizadorEspera?.cancel();
+    temporizadorParaVolverAEspera?.cancel();
     super.dispose();
   }
 
-  void registrarAccion() {
-    if (estaTerminado) {
+  void registrarQueElJugadorEstaNadando() {
+    if (practicaTerminada) {
       return;
     }
 
-    if (!hayAccionReciente) {
+    if (!elJugadorEstaNadando) {
       setState(() {
-        hayAccionReciente = true;
+        elJugadorEstaNadando = true;
       });
     }
 
-    temporizadorEspera?.cancel();
-    temporizadorEspera = Timer(duracionAccionSprite, () {
+    temporizadorParaVolverAEspera?.cancel();
+    temporizadorParaVolverAEspera = Timer(duracionAccionSprite, () {
       if (!mounted) {
         return;
       }
 
       setState(() {
-        hayAccionReciente = false;
+        elJugadorEstaNadando = false;
       });
     });
   }
 
-  void avanzar() {
-    if (estaTerminado) {
+  void avanzarNadador() {
+    if (practicaTerminada) {
       return;
     }
 
     setState(() {
-      progreso += widget.tipoNado.avancePorAccion;
-      if (progreso >= progresoMeta) {
-        progreso = progresoMeta;
-        estaTerminado = true;
+      progresoActual += widget.tipoNado.avancePorAccion;
+      if (progresoActual >= progresoNecesarioParaGanar) {
+        progresoActual = progresoNecesarioParaGanar;
+        practicaTerminada = true;
       }
     });
   }
 
-  void repetirPractica() {
-    temporizadorEspera?.cancel();
+  void reiniciarPractica() {
+    temporizadorParaVolverAEspera?.cancel();
     setState(() {
-      progreso = 0;
-      estaTerminado = false;
+      progresoActual = 0;
+      practicaTerminada = false;
       ladoIzquierdoPresionado = false;
       ladoDerechoPresionado = false;
-      hayAccionReciente = false;
-      ultimoLadoToque = null;
+      elJugadorEstaNadando = false;
+      ultimoLadoTocado = null;
     });
   }
 
@@ -111,11 +113,11 @@ class _PantallaJuegoState extends State<PantallaJuego> {
     Navigator.of(context).pop();
   }
 
-  void presionarLadoMariposa({
+  void cambiarPresionDelLadoParaMariposa({
     required bool esIzquierda,
     required bool estaPresionado,
   }) {
-    registrarAccion();
+    registrarQueElJugadorEstaNadando();
 
     setState(() {
       if (esIzquierda) {
@@ -126,7 +128,7 @@ class _PantallaJuegoState extends State<PantallaJuego> {
     });
 
     if (ladoIzquierdoPresionado && ladoDerechoPresionado) {
-      avanzar();
+      avanzarNadador();
       setState(() {
         ladoIzquierdoPresionado = false;
         ladoDerechoPresionado = false;
@@ -134,51 +136,57 @@ class _PantallaJuegoState extends State<PantallaJuego> {
     }
   }
 
-  void tocarLado({required bool esIzquierda}) {
-    if (estaTerminado) {
+  void tocarLadoDeLaPiscina({required bool esIzquierda}) {
+    if (practicaTerminada) {
       return;
     }
 
-    registrarAccion();
+    registrarQueElJugadorEstaNadando();
 
-    final lado = esIzquierda ? LadoToque.izquierdo : LadoToque.derecho;
+    final lado = esIzquierda ? LadoPantalla.izquierdo : LadoPantalla.derecho;
 
     if (widget.tipoNado == TipoNado.libre ||
         widget.tipoNado == TipoNado.dorso) {
-      if (ultimoLadoToque == lado) {
+      if (ultimoLadoTocado == lado) {
         return;
       }
 
-      ultimoLadoToque = lado;
-      avanzar();
+      ultimoLadoTocado = lado;
+      avanzarNadador();
     }
   }
 
-  void deslizarArriba(DragEndDetails detalles) {
+  void intentarAvanzarConDeslizamiento(DragEndDetails detalles) {
     if (widget.tipoNado != TipoNado.pecho) {
       return;
     }
 
-    registrarAccion();
+    registrarQueElJugadorEstaNadando();
 
     final velocidad = detalles.primaryVelocity ?? 0;
     if (velocidad < 0) {
-      avanzar();
+      avanzarNadador();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final porcentajeProgreso = progreso / progresoMeta;
-    final enEspera = estaTerminado || !hayAccionReciente;
-    final juegoCompleto = progreso >= progresoMeta;
-    final largoActual = juegoCompleto
-        ? totalLargos - 1
-        : (progreso ~/ 100).clamp(0, totalLargos - 1).toInt();
-    final progresoEnLargo = juegoCompleto ? 100.0 : progreso % 100;
-    final porcentajeLargo = progresoEnLargo / 100;
-    final vaHaciaLaDerecha = largoActual.isEven;
-    final largoMostrado = juegoCompleto ? totalLargos : largoActual + 1;
+    final porcentajeProgreso = progresoActual / progresoNecesarioParaGanar;
+
+    final enEspera = practicaTerminada || !elJugadorEstaNadando;
+    final practicaCompleta = progresoActual >= progresoNecesarioParaGanar;
+
+    final vueltaActual = practicaCompleta
+        ? totalVueltas - 1
+        : (progresoActual ~/ progresoPorVuelta).clamp(0, totalVueltas - 1).toInt();
+
+    final progresoEnLaVuelta = practicaCompleta ? progresoPorVuelta : progresoActual % progresoPorVuelta;
+
+    final porcentajeDeLaVuelta = progresoEnLaVuelta / progresoPorVuelta;
+
+    final vaHaciaLaDerecha = vueltaActual.isEven;
+
+    final vueltaMostrada = practicaCompleta ? totalVueltas : vueltaActual + 1;
 
     return Scaffold(
       body: SafeArea(
@@ -198,14 +206,14 @@ class _PantallaJuegoState extends State<PantallaJuego> {
                     constraints: const BoxConstraints(maxWidth: 620),
                     child: VistaPiscina(
                       tipoNado: widget.tipoNado,
-                      porcentajeLargo: porcentajeLargo,
+                      porcentajeDeLaVuelta: porcentajeDeLaVuelta,
                       vaHaciaLaDerecha: vaHaciaLaDerecha,
                       enEspera: enEspera,
-                      largoActual: largoActual,
-                      totalLargos: totalLargos,
-                      alTocarLado: tocarLado,
-                      alDeslizarArriba: deslizarArriba,
-                      alCambiarLadoMariposa: presionarLadoMariposa,
+                      vueltaActual: vueltaActual,
+                      totalVueltas: totalVueltas,
+                      alTocarLado: tocarLadoDeLaPiscina,
+                      alDeslizarArriba: intentarAvanzarConDeslizamiento,
+                      alCambiarLadoMariposa: cambiarPresionDelLadoParaMariposa,
                       ladoIzquierdoPresionado: ladoIzquierdoPresionado,
                       ladoDerechoPresionado: ladoDerechoPresionado,
                     ),
@@ -215,14 +223,14 @@ class _PantallaJuegoState extends State<PantallaJuego> {
               const SizedBox(height: 16),
               _PanelInferior(
                 tipoNado: widget.tipoNado,
-                progreso: progreso,
-                progresoMeta: progresoMeta,
+                progresoActual: progresoActual,
+                progresoNecesarioParaGanar: progresoNecesarioParaGanar,
                 porcentajeProgreso: porcentajeProgreso,
-                largoMostrado: largoMostrado,
-                totalLargos: totalLargos,
+                vueltaMostrada: vueltaMostrada,
+                totalVueltas: totalVueltas,
                 distancia: widget.distancia,
-                estaTerminado: estaTerminado,
-                alRepetir: repetirPractica,
+                estaTerminado: practicaTerminada,
+                alRepetir: reiniciarPractica,
                 alVolverInicio: volverAlInicio,
               ),
             ],
@@ -308,11 +316,11 @@ class _TextoInfo extends StatelessWidget {
 class _PanelInferior extends StatelessWidget {
   const _PanelInferior({
     required this.tipoNado,
-    required this.progreso,
-    required this.progresoMeta,
+    required this.progresoActual,
+    required this.progresoNecesarioParaGanar,
     required this.porcentajeProgreso,
-    required this.largoMostrado,
-    required this.totalLargos,
+    required this.vueltaMostrada,
+    required this.totalVueltas,
     required this.distancia,
     required this.estaTerminado,
     required this.alRepetir,
@@ -320,11 +328,11 @@ class _PanelInferior extends StatelessWidget {
   });
 
   final TipoNado tipoNado;
-  final double progreso;
-  final double progresoMeta;
+  final double progresoActual;
+  final double progresoNecesarioParaGanar;
   final double porcentajeProgreso;
-  final int largoMostrado;
-  final int totalLargos;
+  final int vueltaMostrada;
+  final int totalVueltas;
   final DistanciaNado distancia;
   final bool estaTerminado;
   final VoidCallback alRepetir;
@@ -365,7 +373,7 @@ class _PanelInferior extends StatelessWidget {
                 ),
               ),
               Text(
-                '${progreso.toInt()} / ${progresoMeta.toInt()}',
+                '${progresoActual.toInt()} / ${progresoNecesarioParaGanar.toInt()}',
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -381,7 +389,7 @@ class _PanelInferior extends StatelessWidget {
             runSpacing: 6,
             children: [
               Text(
-                'Largo $largoMostrado / $totalLargos',
+                'Vuelta $vueltaMostrada / $totalVueltas',
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,

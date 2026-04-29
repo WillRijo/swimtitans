@@ -7,11 +7,11 @@ class VistaPiscina extends StatelessWidget {
   const VistaPiscina({
     super.key,
     required this.tipoNado,
-    required this.porcentajeLargo,
+    required this.porcentajeDeLaVuelta,
     required this.vaHaciaLaDerecha,
     required this.enEspera,
-    required this.largoActual,
-    required this.totalLargos,
+    required this.vueltaActual,
+    required this.totalVueltas,
     required this.alTocarLado,
     required this.alDeslizarArriba,
     required this.alCambiarLadoMariposa,
@@ -20,11 +20,11 @@ class VistaPiscina extends StatelessWidget {
   });
 
   final TipoNado tipoNado;
-  final double porcentajeLargo;
+  final double porcentajeDeLaVuelta;
   final bool vaHaciaLaDerecha;
   final bool enEspera;
-  final int largoActual;
-  final int totalLargos;
+  final int vueltaActual;
+  final int totalVueltas;
   final void Function({required bool esIzquierda}) alTocarLado;
   final GestureDragEndCallback alDeslizarArriba;
   final void Function({required bool esIzquierda, required bool estaPresionado})
@@ -38,7 +38,6 @@ class VistaPiscina extends StatelessWidget {
       builder: (context, constraints) {
         final anchoPiscina = constraints.maxWidth;
         final altoPiscina = constraints.maxHeight;
-        final largoVisible = (largoActual + 1).clamp(1, totalLargos).toInt();
         const margenHorizontal = 24.0;
         final anchoNadador = _anchoNadador;
         final altoNadador = _altoNadador;
@@ -47,10 +46,10 @@ class VistaPiscina extends StatelessWidget {
         final finX = (anchoPiscina - margenHorizontal - anchoNadador)
             .clamp(inicioX, double.infinity)
             .toDouble();
-        final avanceLargo = porcentajeLargo.clamp(0, 1).toDouble();
+        final avanceDeLaVuelta = porcentajeDeLaVuelta.clamp(0, 1).toDouble();
         final posicionIzquierdaNadador = vaHaciaLaDerecha
-            ? inicioX + (finX - inicioX) * avanceLargo
-            : finX - (finX - inicioX) * avanceLargo;
+            ? inicioX + (finX - inicioX) * avanceDeLaVuelta
+            : finX - (finX - inicioX) * avanceDeLaVuelta;
         final limiteSuperiorY = altoPiscina > altoNadador + 16
             ? altoPiscina - altoNadador - 8
             : 8.0;
@@ -75,7 +74,6 @@ class VistaPiscina extends StatelessWidget {
                   _crearCarriles(),
                   _crearLineaSalida(),
                   _crearLineaVuelta(),
-                  _crearEtiquetaLargo(largoVisible),
                   _crearEtiquetasMetros(),
                   _crearZonasControl(),
                   Positioned(
@@ -152,31 +150,6 @@ class VistaPiscina extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [_EtiquetaMetro('0 m'), _EtiquetaMetro('50 m')],
-      ),
-    );
-  }
-
-  Widget _crearEtiquetaLargo(int largoVisible) {
-    return Positioned(
-      top: 14,
-      left: 0,
-      right: 0,
-      child: Center(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.26),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Text(
-            'Largo $largoVisible / $totalLargos',
-            style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.95),
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
       ),
     );
   }

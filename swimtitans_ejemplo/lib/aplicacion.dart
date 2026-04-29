@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'screens/pantalla_inicio.dart';
 
+const Color colorPrincipal = Colors.blue;
+const Color colorFondoAplicacion = Color(0xFFE6F7FF);
+
 class AplicacionSwimTitans extends StatelessWidget {
   const AplicacionSwimTitans({super.key});
 
@@ -11,8 +14,8 @@ class AplicacionSwimTitans extends StatelessWidget {
       title: 'Swim Titans',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        scaffoldBackgroundColor: const Color(0xFFE6F7FF),
+        colorScheme: ColorScheme.fromSeed(seedColor: colorPrincipal),
+        scaffoldBackgroundColor: colorFondoAplicacion,
         useMaterial3: true,
       ),
       home: const PantallaInicio(),

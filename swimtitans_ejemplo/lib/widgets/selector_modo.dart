@@ -18,7 +18,7 @@ class SelectorModo extends StatelessWidget {
         const SizedBox(width: 10),
         Expanded(
           child: _FichaModo(
-            etiqueta: '${ModoJuego.competencia.etiqueta}\nProximamente',
+            etiqueta: ModoJuego.competencia.etiqueta,
             estaSeleccionado: false,
             estaDeshabilitado: true,
           ),

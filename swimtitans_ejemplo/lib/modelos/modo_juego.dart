@@ -4,7 +4,7 @@ extension InfoModoJuego on ModoJuego {
   String get etiqueta {
     switch (this) {
       case ModoJuego.practica:
-        return 'Practica';
+        return 'Práctica';
       case ModoJuego.competencia:
         return 'Competencia';
     }

@@ -99,25 +99,40 @@ class _EncabezadoInicio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    final anchoPantalla = MediaQuery.sizeOf(context).width;
+    final tamanoIcono = anchoPantalla < 420 ? 160.0 : 220.0;
+
+    return Column(
       children: [
-        Text(
+        const Text(
           'Swim Titans',
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 42,
+            fontSize: 50,
             fontWeight: FontWeight.bold,
             color: Color(0xFF075985),
           ),
         ),
-        SizedBox(height: 8),
-        Text(
-          'Elige tu practica',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF0F172A),
+        const SizedBox(height: 16),
+        Container(
+          width: tamanoIcono,
+          height: tamanoIcono,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(28),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withAlpha(200),
+                blurRadius: 18,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(28),
+            child: Image.asset(
+              'assets/images/iconos/icono.png',
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ],

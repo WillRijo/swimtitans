@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../models/distancia_nado.dart';
 import '../models/tipo_nado.dart';
+import '../widgets/sprite_nadador.dart';
 import '../widgets/vista_piscina.dart';
 
 enum LadoToque { izquierdo, derecho }
@@ -34,6 +35,23 @@ class _PantallaJuegoState extends State<PantallaJuego> {
   double get progresoMeta => widget.distancia.progresoMeta;
   int get totalLargos => widget.distancia.largos;
 
+  Duration get duracionAccionSprite {
+    switch (widget.tipoNado) {
+      case TipoNado.libre:
+        return SpriteNadador.configuracionLibre.duracionCiclo +
+            const Duration(milliseconds: 100);
+      case TipoNado.dorso:
+        return SpriteNadador.configuracionDorso.duracionCiclo +
+            const Duration(milliseconds: 100);
+      case TipoNado.pecho:
+        return SpriteNadador.configuracionPecho.duracionCiclo +
+            const Duration(milliseconds: 100);
+      case TipoNado.mariposa:
+        return SpriteNadador.configuracionMariposa.duracionCiclo +
+            const Duration(milliseconds: 100);
+    }
+  }
+
   @override
   void dispose() {
     temporizadorEspera?.cancel();
@@ -52,7 +70,7 @@ class _PantallaJuegoState extends State<PantallaJuego> {
     }
 
     temporizadorEspera?.cancel();
-    temporizadorEspera = Timer(const Duration(milliseconds: 350), () {
+    temporizadorEspera = Timer(duracionAccionSprite, () {
       if (!mounted) {
         return;
       }

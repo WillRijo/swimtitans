@@ -17,6 +17,12 @@ class ConfiguracionSpriteNadador {
   final double ancho;
   final double alto;
   final Duration duracionFrame;
+
+  Duration get duracionCiclo {
+    return Duration(
+      milliseconds: duracionFrame.inMilliseconds * cantidadFrames,
+    );
+  }
 }
 
 class SpriteNadador extends StatelessWidget {
@@ -42,8 +48,32 @@ class SpriteNadador extends StatelessWidget {
   static const configuracionLibre = ConfiguracionSpriteNadador(
     ruta: 'assets/images/swimmers/libre.png',
     cantidadFrames: 8,
-    ancho: 132,
-    alto: 80,
+    ancho: 100,
+    alto: 100,
+    duracionFrame: Duration(milliseconds: 100),
+  );
+
+  static const configuracionDorso = ConfiguracionSpriteNadador(
+    ruta: 'assets/images/swimmers/dorso.png',
+    cantidadFrames: 8,
+    ancho: 100,
+    alto: 100,
+    duracionFrame: Duration(milliseconds: 100),
+  );
+
+  static const configuracionPecho = ConfiguracionSpriteNadador(
+    ruta: 'assets/images/swimmers/pecho.png',
+    cantidadFrames: 8,
+    ancho: 100,
+    alto: 100,
+    duracionFrame: Duration(milliseconds: 100),
+  );
+
+  static const configuracionMariposa = ConfiguracionSpriteNadador(
+    ruta: 'assets/images/swimmers/mariposa.png',
+    cantidadFrames: 8,
+    ancho: 100,
+    alto: 100,
     duracionFrame: Duration(milliseconds: 100),
   );
 
@@ -57,6 +87,18 @@ class SpriteNadador extends StatelessWidget {
 
     if (tipoNado == TipoNado.libre) {
       return configuracionLibre;
+    }
+
+    if (tipoNado == TipoNado.dorso) {
+      return configuracionDorso;
+    }
+
+    if (tipoNado == TipoNado.pecho) {
+      return configuracionPecho;
+    }
+
+    if (tipoNado == TipoNado.mariposa) {
+      return configuracionMariposa;
     }
 
     return null;
@@ -87,6 +129,7 @@ class SpriteNadador extends StatelessWidget {
 
     if (configuracion != null) {
       return SpriteSheetNadador(
+        key: ValueKey('${configuracion.ruta}-$enEspera'),
         ruta: configuracion.ruta,
         cantidadFrames: configuracion.cantidadFrames,
         ancho: configuracion.ancho,

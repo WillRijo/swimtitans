@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -18,4 +19,24 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/images/iconos/
     - assets/images/swimmers/
+
+flutter_launcher_icons:
+  image_path: "assets/images/iconos/icono.png"
+  image_path_android: "assets/images/iconos/icono.png"
+  image_path_ios: "assets/images/iconos/icono.png"
+  min_sdk_android: 21
+  android: true 
+  ios: true 
+  adaptive_icon_background: "assets/images/iconos/icono.png" 
+  adaptive_icon_foreground: "assets/images/iconos/icono.png" 
+  adaptive_icon_foreground_inset: 16 
+  adaptive_icon_monochrome: "assets/images/iconos/icono.png" 
+  remove_alpha_ios: true
+  background_color_ios: "#ffffff"
+  web:
+    generate: true
+    image_path: "assets/images/iconos/icono.png"
+    background_color: "#ffffff"
+    theme_color: "#ffffff"

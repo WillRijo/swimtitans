@@ -178,9 +178,13 @@ class _PantallaJuegoState extends State<PantallaJuego> {
 
     final vueltaActual = practicaCompleta
         ? totalVueltas - 1
-        : (progresoActual ~/ progresoPorVuelta).clamp(0, totalVueltas - 1).toInt();
+        : (progresoActual ~/ progresoPorVuelta)
+              .clamp(0, totalVueltas - 1)
+              .toInt();
 
-    final progresoEnLaVuelta = practicaCompleta ? progresoPorVuelta : progresoActual % progresoPorVuelta;
+    final progresoEnLaVuelta = practicaCompleta
+        ? progresoPorVuelta
+        : progresoActual % progresoPorVuelta;
 
     final porcentajeDeLaVuelta = progresoEnLaVuelta / progresoPorVuelta;
 
@@ -209,8 +213,6 @@ class _PantallaJuegoState extends State<PantallaJuego> {
                       porcentajeDeLaVuelta: porcentajeDeLaVuelta,
                       vaHaciaLaDerecha: vaHaciaLaDerecha,
                       enEspera: enEspera,
-                      vueltaActual: vueltaActual,
-                      totalVueltas: totalVueltas,
                       alTocarLado: tocarLadoDeLaPiscina,
                       alDeslizarArriba: intentarAvanzarConDeslizamiento,
                       alCambiarLadoMariposa: cambiarPresionDelLadoParaMariposa,

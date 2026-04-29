@@ -102,7 +102,7 @@ class _SpriteSheetNadadorState extends State<SpriteSheetNadador> {
                 height: widget.altoDelFrame,
                 fit: BoxFit.fill,
                 errorBuilder: (context, error, stackTrace) {
-                  return _SpriteSheetPlaceholder(
+                  return _DibujoTemporalDelSprite(
                     anchoDelFrame: widget.anchoDelFrame,
                     altoDelFrame: widget.altoDelFrame,
                     cantidadDeFrames: widget.cantidadDeFrames,
@@ -117,8 +117,8 @@ class _SpriteSheetNadadorState extends State<SpriteSheetNadador> {
   }
 }
 
-class _SpriteSheetPlaceholder extends StatelessWidget {
-  const _SpriteSheetPlaceholder({
+class _DibujoTemporalDelSprite extends StatelessWidget {
+  const _DibujoTemporalDelSprite({
     required this.anchoDelFrame,
     required this.altoDelFrame,
     required this.cantidadDeFrames,

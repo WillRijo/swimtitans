@@ -10,8 +10,6 @@ class VistaPiscina extends StatelessWidget {
     required this.porcentajeDeLaVuelta,
     required this.vaHaciaLaDerecha,
     required this.enEspera,
-    required this.vueltaActual,
-    required this.totalVueltas,
     required this.alTocarLado,
     required this.alDeslizarArriba,
     required this.alCambiarLadoMariposa,
@@ -23,8 +21,6 @@ class VistaPiscina extends StatelessWidget {
   final double porcentajeDeLaVuelta;
   final bool vaHaciaLaDerecha;
   final bool enEspera;
-  final int vueltaActual;
-  final int totalVueltas;
   final void Function({required bool esIzquierda}) alTocarLado;
   final GestureDragEndCallback alDeslizarArriba;
   final void Function({required bool esIzquierda, required bool estaPresionado})
@@ -194,13 +190,13 @@ class VistaPiscina extends StatelessWidget {
       children: [
         Expanded(
           child: _ZonaControl(
-            etiqueta: tipoNado == TipoNado.pecho ? 'Swipe arriba' : 'Toca',
+            etiqueta: tipoNado == TipoNado.pecho ? 'Desliza ↑' : 'Toca',
             onTapDown: () => alTocarLado(esIzquierda: true),
           ),
         ),
         Expanded(
           child: _ZonaControl(
-            etiqueta: tipoNado == TipoNado.pecho ? 'Swipe arriba' : 'Toca',
+            etiqueta: tipoNado == TipoNado.pecho ? 'Desliza ↑' : 'Toca',
             onTapDown: () => alTocarLado(esIzquierda: false),
           ),
         ),

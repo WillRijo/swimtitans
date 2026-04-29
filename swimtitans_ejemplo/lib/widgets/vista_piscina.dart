@@ -9,6 +9,7 @@ class VistaPiscina extends StatelessWidget {
     required this.tipoNado,
     required this.porcentajeLargo,
     required this.vaHaciaLaDerecha,
+    required this.enEspera,
     required this.largoActual,
     required this.totalLargos,
     required this.alTocarLado,
@@ -21,9 +22,10 @@ class VistaPiscina extends StatelessWidget {
   final TipoNado tipoNado;
   final double porcentajeLargo;
   final bool vaHaciaLaDerecha;
+  final bool enEspera;
   final int largoActual;
   final int totalLargos;
-  final VoidCallback alTocarLado;
+  final void Function({required bool esIzquierda}) alTocarLado;
   final GestureDragEndCallback alDeslizarArriba;
   final void Function({required bool esIzquierda, required bool estaPresionado})
   alCambiarLadoMariposa;
@@ -38,8 +40,8 @@ class VistaPiscina extends StatelessWidget {
         final altoPiscina = constraints.maxHeight;
         final largoVisible = (largoActual + 1).clamp(1, totalLargos).toInt();
         const margenHorizontal = 24.0;
-        const anchoNadador = 76.0;
-        const altoNadador = 76.0;
+        final anchoNadador = _anchoNadador;
+        final altoNadador = _altoNadador;
         final altoCarril = altoPiscina / 3;
         final inicioX = margenHorizontal;
         final finX = (anchoPiscina - margenHorizontal - anchoNadador)
@@ -82,6 +84,7 @@ class VistaPiscina extends StatelessWidget {
                     child: SpriteNadador(
                       tipoNado: tipoNado,
                       vaHaciaLaDerecha: vaHaciaLaDerecha,
+                      enEspera: enEspera,
                     ),
                   ),
                 ],
@@ -91,6 +94,14 @@ class VistaPiscina extends StatelessWidget {
         );
       },
     );
+  }
+
+  double get _anchoNadador {
+    return SpriteNadador.anchoVisual(tipoNado: tipoNado, enEspera: enEspera);
+  }
+
+  double get _altoNadador {
+    return SpriteNadador.altoVisual(tipoNado: tipoNado, enEspera: enEspera);
   }
 
   Widget _crearMarcasAgua() {
@@ -211,13 +222,13 @@ class VistaPiscina extends StatelessWidget {
         Expanded(
           child: _ZonaControl(
             etiqueta: tipoNado == TipoNado.pecho ? 'Swipe arriba' : 'Toca',
-            onTapDown: alTocarLado,
+            onTapDown: () => alTocarLado(esIzquierda: true),
           ),
         ),
         Expanded(
           child: _ZonaControl(
             etiqueta: tipoNado == TipoNado.pecho ? 'Swipe arriba' : 'Toca',
-            onTapDown: alTocarLado,
+            onTapDown: () => alTocarLado(esIzquierda: false),
           ),
         ),
       ],

@@ -26,4 +26,17 @@ extension InfoTipoNado on TipoNado {
         return 'assets/images/swimmers/swimmer_backstroke.png';
     }
   }
+
+  double get avancePorAccion {
+    switch (this) {
+      case TipoNado.libre:
+        return 3;
+      case TipoNado.mariposa:
+        return 5;
+      case TipoNado.pecho:
+        return 4;
+      case TipoNado.dorso:
+        return 3;
+    }
+  }
 }

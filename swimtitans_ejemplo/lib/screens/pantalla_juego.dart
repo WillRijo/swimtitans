@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../models/distancia_nado.dart';
 import '../models/tipo_nado.dart';
 import '../widgets/vista_piscina.dart';
+
+enum LadoToque { izquierdo, derecho }
 
 class PantallaJuego extends StatefulWidget {
   const PantallaJuego({
@@ -23,9 +27,41 @@ class _PantallaJuegoState extends State<PantallaJuego> {
   bool estaTerminado = false;
   bool ladoIzquierdoPresionado = false;
   bool ladoDerechoPresionado = false;
+  bool hayAccionReciente = false;
+  Timer? temporizadorEspera;
+  LadoToque? ultimoLadoToque;
 
   double get progresoMeta => widget.distancia.progresoMeta;
   int get totalLargos => widget.distancia.largos;
+
+  @override
+  void dispose() {
+    temporizadorEspera?.cancel();
+    super.dispose();
+  }
+
+  void registrarAccion() {
+    if (estaTerminado) {
+      return;
+    }
+
+    if (!hayAccionReciente) {
+      setState(() {
+        hayAccionReciente = true;
+      });
+    }
+
+    temporizadorEspera?.cancel();
+    temporizadorEspera = Timer(const Duration(milliseconds: 350), () {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        hayAccionReciente = false;
+      });
+    });
+  }
 
   void avanzar() {
     if (estaTerminado) {
@@ -33,7 +69,7 @@ class _PantallaJuegoState extends State<PantallaJuego> {
     }
 
     setState(() {
-      progreso += 20;
+      progreso += widget.tipoNado.avancePorAccion;
       if (progreso >= progresoMeta) {
         progreso = progresoMeta;
         estaTerminado = true;
@@ -42,11 +78,14 @@ class _PantallaJuegoState extends State<PantallaJuego> {
   }
 
   void repetirPractica() {
+    temporizadorEspera?.cancel();
     setState(() {
       progreso = 0;
       estaTerminado = false;
       ladoIzquierdoPresionado = false;
       ladoDerechoPresionado = false;
+      hayAccionReciente = false;
+      ultimoLadoToque = null;
     });
   }
 
@@ -58,6 +97,8 @@ class _PantallaJuegoState extends State<PantallaJuego> {
     required bool esIzquierda,
     required bool estaPresionado,
   }) {
+    registrarAccion();
+
     setState(() {
       if (esIzquierda) {
         ladoIzquierdoPresionado = estaPresionado;
@@ -75,9 +116,22 @@ class _PantallaJuegoState extends State<PantallaJuego> {
     }
   }
 
-  void tocarLado() {
+  void tocarLado({required bool esIzquierda}) {
+    if (estaTerminado) {
+      return;
+    }
+
+    registrarAccion();
+
+    final lado = esIzquierda ? LadoToque.izquierdo : LadoToque.derecho;
+
     if (widget.tipoNado == TipoNado.libre ||
         widget.tipoNado == TipoNado.dorso) {
+      if (ultimoLadoToque == lado) {
+        return;
+      }
+
+      ultimoLadoToque = lado;
       avanzar();
     }
   }
@@ -86,6 +140,8 @@ class _PantallaJuegoState extends State<PantallaJuego> {
     if (widget.tipoNado != TipoNado.pecho) {
       return;
     }
+
+    registrarAccion();
 
     final velocidad = detalles.primaryVelocity ?? 0;
     if (velocidad < 0) {
@@ -96,6 +152,7 @@ class _PantallaJuegoState extends State<PantallaJuego> {
   @override
   Widget build(BuildContext context) {
     final porcentajeProgreso = progreso / progresoMeta;
+    final enEspera = estaTerminado || !hayAccionReciente;
     final juegoCompleto = progreso >= progresoMeta;
     final largoActual = juegoCompleto
         ? totalLargos - 1
@@ -125,6 +182,7 @@ class _PantallaJuegoState extends State<PantallaJuego> {
                       tipoNado: widget.tipoNado,
                       porcentajeLargo: porcentajeLargo,
                       vaHaciaLaDerecha: vaHaciaLaDerecha,
+                      enEspera: enEspera,
                       largoActual: largoActual,
                       totalLargos: totalLargos,
                       alTocarLado: tocarLado,
@@ -258,7 +316,7 @@ class _PanelInferior extends StatelessWidget {
     switch (tipoNado) {
       case TipoNado.libre:
       case TipoNado.dorso:
-        return 'Toca izquierda o derecha';
+        return 'Alterna izquierda y derecha';
       case TipoNado.mariposa:
         return 'Presiona ambos lados';
       case TipoNado.pecho:

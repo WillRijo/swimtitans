@@ -1,21 +1,61 @@
 # Entender app inicial
 
-**Nivel:** Aprender
+**Nivel:** Aprender y Practicar
 
-## Objetivo corto
+## Objetivo
 
 Entender que aparece cuando Flutter crea una app nueva.
 
-## Archivos o herramientas que se usaran
+## Herramientas que vamos a usar
 
 - Proyecto inicial de Flutter
+- VS Code
 - `lib/main.dart`
-- Emulador, navegador o dispositivo
+- Navegador, simulador o dispositivo
 
-## Resumen de lo que se explicara despues
+## Idea principal
 
-Se explicara que la app inicial es un ejemplo que Flutter crea para nosotros. Veremos que tiene texto, un boton y un contador.
+Cuando Flutter crea un proyecto nuevo, tambien crea una app de ejemplo.
 
-## Actividad futura breve
+Esa app sirve para probar que todo funciona.
 
-Ejecutar la app inicial y tocar el boton para ver que cambia.
+No tenemos que entender todo el codigo todavia.
+
+## Que vas a ver
+
+Normalmente la app inicial tiene:
+
+- una pantalla simple
+- un titulo
+- un texto
+- un contador
+- un boton con simbolo `+`
+- cuando presionas el boton, el numero sube
+
+## Paso a paso
+
+1. Abre el proyecto de prueba en VS Code.
+2. Busca la carpeta `lib`.
+3. Abre `lib/main.dart`.
+4. Ejecuta la app con `F5` o con `flutter run`.
+5. Toca el boton `+`.
+6. Mira que el contador cambia.
+
+Si el numero cambia, la app esta respondiendo.
+
+Eso significa que Flutter puede dibujar una pantalla y reaccionar cuando tocas un boton.
+
+## Lo que haremos despues
+
+Despues veremos donde empieza la app con `main()` y `runApp()`.
+
+## Actividad
+
+1. Ejecuta la app inicial.
+2. Toca el boton `+` tres veces.
+3. Mira que numero aparece.
+4. Escribe esta frase:
+
+```text
+Cuando toco el boton, la app cambia el numero.
+```

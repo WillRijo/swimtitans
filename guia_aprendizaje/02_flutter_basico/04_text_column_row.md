@@ -2,21 +2,74 @@
 
 **Nivel:** Practicar
 
-## Objetivo corto
+## Objetivo
 
 Practicar como mostrar texto y ordenar cosas en vertical u horizontal.
 
-## Archivos o herramientas que se usaran
+## Herramientas que vamos a usar
 
 - `lib/main.dart`
 - Widget `Text`
 - Widget `Column`
 - Widget `Row`
 
-## Resumen de lo que se explicara despues
+## Idea principal
 
-Se explicara que `Text` muestra palabras, `Column` acomoda cosas de arriba hacia abajo y `Row` acomoda cosas de izquierda a derecha.
+- `Text` muestra palabras en la pantalla.
+- `Column` acomoda widgets de arriba hacia abajo.
+- `Row` acomoda widgets de izquierda a derecha.
 
-## Actividad futura breve
+## Codigo importante
 
-Crear una pantalla simple con el titulo Swim Titans y dos textos debajo.
+Ejemplo corto:
+
+```dart
+Column(
+  children: [
+    Text('Swim Titans'),
+    Text('Elige tu nado'),
+    Row(
+      children: [
+        Text('Libre'),
+        Text('Dorso'),
+      ],
+    ),
+  ],
+)
+```
+
+## Explicacion paso a paso
+
+La `Column` es como una lista vertical.
+
+Primero aparece `Swim Titans`.
+
+Debajo aparece `Elige tu nado`.
+
+Luego aparece una `Row`.
+
+La `Row` muestra `Libre` y `Dorso` uno al lado del otro.
+
+## Conectar con Swim Titans
+
+En la pantalla de inicio usaremos:
+
+- `Text` para el titulo.
+- `Column` para poner cosas de arriba hacia abajo.
+- `Row` o `Wrap` para poner botones uno al lado del otro.
+
+## Lo que haremos despues
+
+Despues aprenderemos botones.
+
+## Actividad
+
+Crea una pantalla simple con:
+
+- Un texto grande: `Swim Titans`.
+- Un texto debajo: `Elige tu nado`.
+- Una fila con dos textos: `Libre` y `Dorso`.
+
+Pregunta:
+
+Que pasaria si cambiaras `Row` por `Column`?

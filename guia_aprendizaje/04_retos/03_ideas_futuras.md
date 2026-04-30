@@ -133,3 +133,11 @@ Idea 3:
 Que cambia:
 Por que me gusta:
 ```
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Retos medios](02_retos_medios.md)  

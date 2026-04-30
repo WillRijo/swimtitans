@@ -355,3 +355,12 @@ Despues crearemos `PantallaJuego` y usaremos navegacion para abrirla.
 4. Agrega botones de distancia.
 5. Toca diferentes opciones y mira como cambia el color.
 6. Presiona `Iniciar practica` y revisa que aparece el mensaje en la terminal.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Crear pantalla inicio](04_crear_pantalla_inicio.md)  
+[Siguiente leccion: Navegar a pantalla juego](06_navegar_a_pantalla_juego.md)  

@@ -176,3 +176,12 @@ flutter run
 ```text
 El cambio que hice fue: ____
 ```
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Retos](00_indice.md)  
+[Siguiente leccion: Retos medios](02_retos_medios.md)  

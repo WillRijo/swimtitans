@@ -16,14 +16,14 @@ Conocer las piezas basicas de Flutter antes de construir Swim Titans.
 
 ## Lecciones
 
-- `01_entender_app_inicial.md`
-- `02_main_y_runapp.md`
-- `03_widgets.md`
-- `04_text_column_row.md`
-- `05_botones.md`
-- `06_variables.md`
-- `07_estado_setstate.md`
-- `08_navegacion.md`
+- [Entender app inicial](01_entender_app_inicial.md)
+- [main y runApp](02_main_y_runapp.md)
+- [Widgets](03_widgets.md)
+- [Text, Column y Row](04_text_column_row.md)
+- [Botones](05_botones.md)
+- [Variables](06_variables.md)
+- [Estado y setState](07_estado_setstate.md)
+- [Navegacion](08_navegacion.md)
 
 ## Lo que haremos en esta seccion
 
@@ -47,3 +47,11 @@ Esta seccion es para practicar piezas pequenas antes del juego.
 ## Primera actividad
 
 Abrir `lib/main.dart` en una app de prueba y mirar que partes reconoces.
+
+---
+
+## Navegacion
+
+[Volver al indice principal](../00_indice.md)  
+[Anterior seccion: Crear primer proyecto](../01_preparacion_macos/09_crear_primer_proyecto.md)  
+[Siguiente leccion: Entender app inicial](01_entender_app_inicial.md)  

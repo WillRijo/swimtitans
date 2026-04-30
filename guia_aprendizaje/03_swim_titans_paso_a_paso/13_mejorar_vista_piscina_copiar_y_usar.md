@@ -469,3 +469,12 @@ Despues vienen retos para cambiar colores, velocidad, textos y reglas sin tocar 
 3. Ejecuta la app.
 4. Compara la piscina simple con la piscina mejorada.
 5. Marca una parte que entiendes y una parte que quieres estudiar despues.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Motor sprite sheet](12_motor_sprite_sheet_copiar_y_usar.md)  
+[Siguiente seccion: Retos](../04_retos/00_indice.md)  

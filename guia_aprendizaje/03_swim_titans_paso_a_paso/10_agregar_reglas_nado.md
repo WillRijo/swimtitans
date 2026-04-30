@@ -206,3 +206,12 @@ Despues agregaremos sprites para que el nadador se vea animado.
 Pregunta:
 
 Por que libre no debe avanzar si tocas el mismo lado dos veces?
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Mover nadador](09_mover_nadador.md)  
+[Siguiente leccion: Agregar sprites](11_agregar_sprites.md)  

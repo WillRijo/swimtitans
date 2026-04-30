@@ -94,3 +94,12 @@ Crea o modifica un contador simple:
 Pregunta:
 
 Que pasaria si cambias el numero sin usar `setState`?
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Variables](06_variables.md)  
+[Siguiente leccion: Navegacion](08_navegacion.md)  

@@ -104,3 +104,12 @@ Cuando se toque, debe regresar a `PantallaInicio`.
 Pregunta:
 
 Que dato te gustaria enviar desde Inicio hasta Juego?
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Estado y setState](07_estado_setstate.md)  
+[Siguiente seccion: Swim Titans paso a paso](../03_swim_titans_paso_a_paso/00_indice.md)  

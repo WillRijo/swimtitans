@@ -84,3 +84,12 @@ Tambien usaremos VS Code para instalar Flutter.
 3. Abre la terminal integrada.
 4. Crea un archivo `prueba.txt`.
 5. Escribe: `Hola, estoy aprendiendo Flutter.`
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Instalar herramientas en macOS](05_instalar_herramientas_macos.md)  
+[Siguiente leccion: Instalar Flutter con VS Code](07_instalar_flutter_con_vscode.md)  

@@ -202,3 +202,12 @@ Despues crearemos una piscina simple para que el progreso se vea como movimiento
 Pregunta:
 
 Que dato cambia cada vez que presionas `Avanzar`?
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Navegar a pantalla juego](06_navegar_a_pantalla_juego.md)  
+[Siguiente leccion: Crear piscina simple](08_crear_piscina_simple.md)  

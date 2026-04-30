@@ -120,3 +120,12 @@ Luego crearemos Swim Titans paso a paso.
 2. Ejecutalo sin cambiar nada.
 3. Escribe que viste en la pantalla.
 4. Cierra la app cuando termines.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Validar Flutter doctor](08_validar_flutter_doctor.md)  
+[Siguiente seccion: Flutter basico](../02_flutter_basico/00_indice.md)  

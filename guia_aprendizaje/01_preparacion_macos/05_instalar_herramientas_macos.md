@@ -101,3 +101,12 @@ VS Code sera el lugar donde escribiremos el codigo.
 2. Ejecuta `xcode-select --install`.
 3. Ejecuta `git --version`.
 4. Escribe en una hoja o nota: "Terminal sirve para escribir comandos".
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Que es programar](04_que_es_programar.md)  
+[Siguiente leccion: Instalar VS Code](06_instalar_vscode.md)  

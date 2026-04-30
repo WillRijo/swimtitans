@@ -78,3 +78,12 @@ bool jugadorListo = true;
 Pregunta:
 
 Cual de esas variables cambiaria durante el juego?
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Botones](05_botones.md)  
+[Siguiente leccion: Estado y setState](07_estado_setstate.md)  

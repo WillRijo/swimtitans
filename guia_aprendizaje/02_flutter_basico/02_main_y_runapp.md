@@ -71,3 +71,12 @@ Despues aprenderemos que es un widget.
 ```text
 main empieza la app y runApp muestra el primer widget.
 ```
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Entender app inicial](01_entender_app_inicial.md)  
+[Siguiente leccion: Widgets](03_widgets.md)  

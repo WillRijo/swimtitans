@@ -169,3 +169,12 @@ Despues agregaremos reglas diferentes para cada tipo de nado:
 Pregunta:
 
 Que variable cambia cuando el nadador avanza?
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Crear piscina simple](08_crear_piscina_simple.md)  
+[Siguiente leccion: Agregar reglas nado](10_agregar_reglas_nado.md)  

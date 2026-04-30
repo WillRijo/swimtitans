@@ -73,3 +73,12 @@ print('Vamos a nadar');
 Pregunta:
 
 Que otra palabra pondrias dentro del boton?
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Text, Column y Row](04_text_column_row.md)  
+[Siguiente leccion: Variables](06_variables.md)  

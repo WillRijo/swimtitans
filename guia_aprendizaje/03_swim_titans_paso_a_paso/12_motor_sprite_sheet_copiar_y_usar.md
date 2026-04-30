@@ -242,3 +242,12 @@ Despues usaremos este motor dentro de `SpriteNadador`, que decide que imagen usa
 3. Usalo temporalmente con `libre.png`.
 4. Cambia `duracionDeCadaFrame` para ver la animacion mas lenta.
 5. Escribe una pregunta sobre una parte que quieras entender despues.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Agregar sprites](11_agregar_sprites.md)  
+[Siguiente leccion: Mejorar vista piscina](13_mejorar_vista_piscina_copiar_y_usar.md)  

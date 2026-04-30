@@ -140,3 +140,12 @@ Despues usaremos `SpriteSheetNadador`, una pieza de motor del juego, para conver
 4. Registra las carpetas en `pubspec.yaml`.
 5. Ejecuta `flutter pub get`.
 6. Muestra `icono.png` temporalmente en pantalla.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Agregar reglas nado](10_agregar_reglas_nado.md)  
+[Siguiente leccion: Motor sprite sheet](12_motor_sprite_sheet_copiar_y_usar.md)  

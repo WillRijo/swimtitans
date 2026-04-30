@@ -100,3 +100,12 @@ En la siguiente leccion usaremos Flutter Doctor para revisar si la instalacion q
 4. Abre Command Palette.
 5. Busca `Flutter: New Project`.
 6. Si hace falta, descarga Flutter SDK desde VS Code.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Instalar VS Code](06_instalar_vscode.md)  
+[Siguiente leccion: Validar Flutter doctor](08_validar_flutter_doctor.md)  

@@ -164,3 +164,12 @@ Despues crearemos botones de seleccion para:
 3. Cambia temporalmente el texto debajo del titulo.
 4. Cambia el color del titulo.
 5. Vuelve a dejar el titulo como `Swim Titans`.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Crear modelos](03_crear_modelos.md)  
+[Siguiente leccion: Crear botones seleccion](05_crear_botones_seleccion.md)  

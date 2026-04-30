@@ -193,3 +193,12 @@ Quiero cambiar:
 Archivos que voy a mirar:
 Que espero que pase:
 ```
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Retos faciles](01_retos_faciles.md)  
+[Siguiente leccion: Ideas futuras](03_ideas_futuras.md)  

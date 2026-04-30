@@ -225,3 +225,12 @@ Despues crearemos la pantalla de inicio con:
 - Cuales son los tipos de nado?
 - Cuantas vueltas tiene 100 m?
 - Cual tipo de nado avanza mas por accion?
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Crear aplicacion](02_crear_aplicacion.md)  
+[Siguiente leccion: Crear pantalla inicio](04_crear_pantalla_inicio.md)  

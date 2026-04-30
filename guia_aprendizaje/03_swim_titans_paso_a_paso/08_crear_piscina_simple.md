@@ -226,3 +226,12 @@ Despues haremos que el nadador avance con toques reales en la piscina, no solo c
 3. Crea `_NadadorTemporal`.
 4. Muestra la piscina en `PantallaJuego`.
 5. Presiona `Avanzar` y mira el movimiento.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Crear estado del juego](07_crear_estado_del_juego.md)  
+[Siguiente leccion: Mover nadador](09_mover_nadador.md)  

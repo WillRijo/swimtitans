@@ -175,3 +175,12 @@ Despues crearemos el estado del juego:
 3. Agrega `iniciarPractica` en `PantallaInicio`.
 4. Presiona el boton de inicio.
 5. Confirma que la nueva pantalla muestra el nado y la distancia seleccionados.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Crear botones seleccion](05_crear_botones_seleccion.md)  
+[Siguiente leccion: Crear estado del juego](07_crear_estado_del_juego.md)  

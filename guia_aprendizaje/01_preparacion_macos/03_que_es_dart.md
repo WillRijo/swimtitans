@@ -63,3 +63,12 @@ Escribe en una hoja tres instrucciones simples como si fueran ordenes para una a
 1. Muestra el titulo del juego.
 2. Cambia el color del boton.
 3. Mueve el nadador hacia adelante.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Que es Flutter](02_que_es_flutter.md)  
+[Siguiente leccion: Que es programar](04_que_es_programar.md)  

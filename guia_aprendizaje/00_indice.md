@@ -44,10 +44,10 @@ Algunas partes dificiles, como el motor de sprites o una vista mas avanzada de l
 
 ## Secciones
 
-- `01_preparacion_macos`: preparar la computadora y conocer las ideas basicas.
-- `02_flutter_basico`: aprender las piezas principales de Flutter.
-- `03_swim_titans_paso_a_paso`: crear Swim Titans desde una app nueva.
-- `04_retos`: ideas para seguir jugando y mejorando la app.
+- [Preparacion en macOS](01_preparacion_macos/00_indice.md): preparar la computadora y conocer las ideas basicas.
+- [Flutter basico](02_flutter_basico/00_indice.md): aprender las piezas principales de Flutter.
+- [Swim Titans paso a paso](03_swim_titans_paso_a_paso/00_indice.md): crear Swim Titans desde una app nueva.
+- [Retos](04_retos/00_indice.md): ideas para seguir jugando y mejorando la app.
 
 ## Lo que haremos despues
 
@@ -56,3 +56,9 @@ Mas adelante cada leccion tendra explicaciones completas, pasos pequenos y ejemp
 ## Primera actividad
 
 Empezar por `01_preparacion_macos/00_indice.md` y revisar que herramientas necesitas antes de crear la app.
+
+---
+
+## Navegacion
+
+[Siguiente seccion: Preparacion en macOS](01_preparacion_macos/00_indice.md)  

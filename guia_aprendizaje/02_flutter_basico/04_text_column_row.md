@@ -73,3 +73,12 @@ Crea una pantalla simple con:
 Pregunta:
 
 Que pasaria si cambiaras `Row` por `Column`?
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Widgets](03_widgets.md)  
+[Siguiente leccion: Botones](05_botones.md)  

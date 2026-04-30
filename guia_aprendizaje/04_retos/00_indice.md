@@ -15,9 +15,9 @@ Tener ideas para seguir mejorando Swim Titans despues de terminar la version pri
 
 ## Lecciones
 
-- `01_retos_faciles.md`
-- `02_retos_medios.md`
-- `03_ideas_futuras.md`
+- [Retos faciles](01_retos_faciles.md)
+- [Retos medios](02_retos_medios.md)
+- [Ideas futuras](03_ideas_futuras.md)
 
 ## Lo que haremos en esta seccion
 
@@ -38,3 +38,11 @@ Puedes elegir el reto que parezca mas divertido.
 ## Primera actividad
 
 Despues de terminar la app base, elegir un reto facil y hacerlo con calma.
+
+---
+
+## Navegacion
+
+[Volver al indice principal](../00_indice.md)  
+[Anterior seccion: Mejorar vista piscina](../03_swim_titans_paso_a_paso/13_mejorar_vista_piscina_copiar_y_usar.md)  
+[Siguiente leccion: Retos faciles](01_retos_faciles.md)  

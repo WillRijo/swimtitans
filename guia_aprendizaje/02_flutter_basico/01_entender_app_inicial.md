@@ -59,3 +59,12 @@ Despues veremos donde empieza la app con `main()` y `runApp()`.
 ```text
 Cuando toco el boton, la app cambia el numero.
 ```
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Flutter basico](00_indice.md)  
+[Siguiente leccion: main y runApp](02_main_y_runapp.md)  

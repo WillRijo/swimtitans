@@ -77,3 +77,12 @@ Ejemplo:
 - Boton 50 m
 - Imagen del nadador
 - Piscina
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: main y runApp](02_main_y_runapp.md)  
+[Siguiente leccion: Text, Column y Row](04_text_column_row.md)  

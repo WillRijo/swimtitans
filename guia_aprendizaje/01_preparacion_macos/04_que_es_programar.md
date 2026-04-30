@@ -47,3 +47,12 @@ Intenta que sean pasos claros, por ejemplo:
 2. Pon una fruta en el plato.
 3. Corta la fruta con cuidado.
 4. Sirve la merienda.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Que es Dart](03_que_es_dart.md)  
+[Siguiente leccion: Instalar herramientas en macOS](05_instalar_herramientas_macos.md)  

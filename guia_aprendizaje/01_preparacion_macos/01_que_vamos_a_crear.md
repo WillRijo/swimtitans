@@ -52,3 +52,12 @@ Mira la idea del juego y responde:
 1. Que parte te parece mas divertida?
 2. Que crees que hace un boton?
 3. Que crees que significa mover un nadador con codigo?
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Preparacion en macOS](00_indice.md)  
+[Siguiente leccion: Que es Flutter](02_que_es_flutter.md)  

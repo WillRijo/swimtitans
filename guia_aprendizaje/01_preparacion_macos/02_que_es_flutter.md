@@ -63,3 +63,12 @@ Ejemplos:
 1. Un boton
 2. Un texto
 3. Una imagen
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Que vamos a crear](01_que_vamos_a_crear.md)  
+[Siguiente leccion: Que es Dart](03_que_es_dart.md)  

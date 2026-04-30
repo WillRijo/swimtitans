@@ -93,3 +93,12 @@ flutter doctor
 
 4. Anota una cosa que salio bien.
 5. Anota una cosa que no entiendas, si aparece.
+
+---
+
+## Navegacion
+
+[Volver al indice de seccion](00_indice.md)  
+[Volver al indice principal](../00_indice.md)  
+[Leccion anterior: Instalar Flutter con VS Code](07_instalar_flutter_con_vscode.md)  
+[Siguiente leccion: Crear primer proyecto](09_crear_primer_proyecto.md)  

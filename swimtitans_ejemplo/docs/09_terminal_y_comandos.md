@@ -9,13 +9,13 @@ Los comandos ayudan a preparar, revisar y ejecutar el proyecto.
 Antes de correr comandos, abre la terminal en esta carpeta:
 
 ```text
-D:\dev\swimtitans\swimtitans_ejemplo
+\swimtitans_ejemplo
 ```
 
 Tambien puedes entrar con:
 
 ```powershell
-cd D:\dev\swimtitans\swimtitans_ejemplo
+cd \swimtitans_ejemplo
 ```
 
 ## flutter pub get

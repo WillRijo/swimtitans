@@ -2,21 +2,53 @@
 
 **Nivel:** Aprender
 
-## Objetivo corto
+## Objetivo
 
 Conocer la idea de Swim Titans antes de empezar a programar.
 
-## Archivos o herramientas que se usaran
+## Herramientas que vamos a usar
 
 - Esta guia
-- Proyecto de referencia `swimtitans_ejemplo`
+- Proyecto terminado de referencia: `swimtitans_ejemplo`
 
-## Resumen de lo que se explicara despues
+## Idea principal
 
-Se explicara que Swim Titans es una app de natacion hecha con Flutter. La app tendra pantallas, botones, nadadores, una piscina y reglas simples de juego.
+Vamos a crear una app/juego de natacion llamada **Swim Titans**.
 
-Tambien se explicara que no vamos a tocar el proyecto terminado. Lo usaremos solo para mirar como puede quedar la app.
+En el juego podras:
 
-## Actividad futura breve
+- ver una pantalla de inicio
+- elegir un tipo de nado
+- elegir una distancia
+- entrar a una piscina
+- mover un nadador
+- llegar a la meta
 
-Mirar una imagen o descripcion de la app final y escribir que partes te gustaria construir primero.
+Los tipos de nado seran:
+
+- Libre
+- Dorso
+- Pecho
+- Mariposa
+
+La app sera simple al principio. Primero queremos aprender como se construye una pantalla, como funcionan los botones y como se mueve algo en Flutter.
+
+## Proyecto de referencia
+
+Ya existe una version terminada llamada `swimtitans_ejemplo`.
+
+No vamos a modificar ese proyecto al principio. Lo usaremos como ejemplo para mirar como puede quedar la app al final.
+
+Tu vas a crear una app nueva paso a paso.
+
+## Lo que haremos despues
+
+Despues aprenderemos que es Flutter, que es Dart y que significa programar.
+
+## Actividad
+
+Mira la idea del juego y responde:
+
+1. Que parte te parece mas divertida?
+2. Que crees que hace un boton?
+3. Que crees que significa mover un nadador con codigo?

@@ -2,20 +2,48 @@
 
 **Nivel:** Aprender
 
-## Objetivo corto
+## Objetivo
 
 Entender que programar es dar instrucciones claras y ordenadas a una computadora.
 
-## Archivos o herramientas que se usaran
+## Herramientas que vamos a usar
 
 - Papel o notas
 - Dart
 - VS Code
 
-## Resumen de lo que se explicara despues
+## Idea principal
 
-Se explicaran ideas basicas como instrucciones, errores, variables, condiciones y pasos. La meta sera entender que la computadora no adivina: necesita que le digamos las cosas con cuidado.
+Programar es escribir instrucciones para que una computadora sepa que hacer.
 
-## Actividad futura breve
+Una computadora no adivina. Necesita pasos claros.
 
-Escribir los pasos para preparar una merienda como si fueras una computadora que solo entiende instrucciones exactas.
+Por ejemplo, si queremos que Swim Titans mueva un nadador, no basta con decir "muevelo".
+
+Tenemos que explicar cosas como:
+
+- donde esta el nadador
+- cuanto debe avanzar
+- cuando debe detenerse
+- que pasa si llega a la meta
+
+Programar tambien significa probar, equivocarse, leer errores y arreglar poco a poco.
+
+Eso es normal. Los errores ayudan a aprender.
+
+## Lo que haremos despues
+
+Despues prepararemos macOS para poder instalar las herramientas que necesitamos.
+
+Luego usaremos VS Code y Flutter para crear nuestro primer proyecto.
+
+## Actividad
+
+Escribe los pasos para preparar una merienda como si fueras una computadora.
+
+Intenta que sean pasos claros, por ejemplo:
+
+1. Toma un plato.
+2. Pon una fruta en el plato.
+3. Corta la fruta con cuidado.
+4. Sirve la merienda.

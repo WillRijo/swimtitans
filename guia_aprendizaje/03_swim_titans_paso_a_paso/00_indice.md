@@ -1,18 +1,18 @@
-# 03 Swim Titans paso a paso
+# Swim Titans paso a paso
 
 **Nivel:** Practicar
 
-## Objetivo corto
+## Objetivo
 
 Construir Swim Titans desde un proyecto nuevo, usando el proyecto terminado solo como referencia.
 
-## Archivos o herramientas que se usaran
+## Herramientas que vamos a usar
 
 - VS Code
 - Flutter
 - Dart
 - Proyecto nuevo de Swim Titans
-- Referencia `swimtitans_ejemplo`
+- Proyecto terminado de referencia: `swimtitans_ejemplo`
 
 ## Lecciones
 
@@ -30,10 +30,36 @@ Construir Swim Titans desde un proyecto nuevo, usando el proyecto terminado solo
 - `12_motor_sprite_sheet_copiar_y_usar.md`
 - `13_mejorar_vista_piscina_copiar_y_usar.md`
 
-## Resumen de lo que se explicara despues
+## Lo que haremos en esta seccion
 
-Esta seccion sera la construccion principal. Primero se creara la app nueva, luego pantallas y modelos, despues la piscina y las reglas. Al final se usaran partes mas dificiles copiando y pegando codigo preparado.
+Esta es la parte donde construiremos el juego.
 
-## Actividad futura breve
+Primero crearemos una app nueva.
+
+Despues agregaremos:
+
+- aplicacion principal
+- modelos
+- pantalla de inicio
+- botones de seleccion
+- pantalla de juego
+- piscina
+- movimiento del nadador
+- reglas de nado
+- sprites
+
+Algunas partes mas dificiles se marcaran como **Copiar y usar**.
+
+Eso esta bien porque primero queremos ver el juego funcionando, y despues se pueden estudiar esas partes con calma.
+
+## Proyecto de referencia
+
+`swimtitans_ejemplo` sirve para mirar como quedo la version final.
+
+No vamos a editarlo directamente en esta guia.
+
+Tu crearas tu propia version nueva.
+
+## Primera actividad
 
 Crear una carpeta nueva para tu propia version de Swim Titans, separada del proyecto de referencia.

@@ -1,16 +1,17 @@
-# 04 Retos
+# Retos
 
 **Nivel:** Practicar
 
-## Objetivo corto
+## Objetivo
 
 Tener ideas para seguir mejorando Swim Titans despues de terminar la version principal.
 
-## Archivos o herramientas que se usaran
+## Herramientas que vamos a usar
 
 - Proyecto nuevo de Swim Titans
 - Flutter
 - Dart
+- Creatividad
 
 ## Lecciones
 
@@ -18,10 +19,22 @@ Tener ideas para seguir mejorando Swim Titans despues de terminar la version pri
 - `02_retos_medios.md`
 - `03_ideas_futuras.md`
 
-## Resumen de lo que se explicara despues
+## Lo que haremos en esta seccion
 
-Esta seccion tendra retos pequenos, retos un poco mas grandes e ideas para futuras versiones de la app.
+Los retos sirven para practicar sin empezar otra app desde cero.
 
-## Actividad futura breve
+Algunos retos seran faciles y otros necesitaran pensar un poco mas.
 
-Elegir un reto facil para hacer despues de completar la app base.
+No hay que hacer todos los retos el mismo dia.
+
+Puedes elegir el reto que parezca mas divertido.
+
+## Tipos de retos
+
+- Retos faciles: cambios pequenos de texto, color o velocidad.
+- Retos medios: cambios que combinan varias partes del juego.
+- Ideas futuras: cosas mas grandes para versiones nuevas.
+
+## Primera actividad
+
+Despues de terminar la app base, elegir un reto facil y hacerlo con calma.
